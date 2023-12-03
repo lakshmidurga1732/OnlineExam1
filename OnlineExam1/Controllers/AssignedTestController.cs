@@ -13,8 +13,8 @@ namespace OnlineExam1.Controllers
     public class AssignedTestController : ControllerBase
     {
         private readonly UnitOfWork unitOfWork;
-        private readonly ILogger<SubjectController> _logger;
-        public AssignedTestController(MyContext context, ILogger<SubjectController> logger)
+        private readonly ILogger<AssignedTestController> _logger;
+        public AssignedTestController(MyContext context, ILogger<AssignedTestController> logger)
         {
             unitOfWork = new UnitOfWork(context);
             _logger = logger;

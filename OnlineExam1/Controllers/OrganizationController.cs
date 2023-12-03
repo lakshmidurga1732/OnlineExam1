@@ -16,7 +16,7 @@ namespace OnlineExam1.Controllers
 
     public class OrganizationController : ControllerBase
     {
-        UnitOfWork unitOfWork;
+        private readonly UnitOfWork unitOfWork;
         private readonly ILogger<OrganizationController> _logger;
 
         public OrganizationController(MyContext context, ILogger<OrganizationController> logger)

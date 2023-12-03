@@ -10,7 +10,7 @@ using OnlineExam1.Entity;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-
+using log4net;
 
 namespace OnlineExam1.Controllers
 {
@@ -21,15 +21,18 @@ namespace OnlineExam1.Controllers
         private readonly IUserService userService;
         private readonly IMapper _mapper;
         private readonly IConfiguration configuration;
-       
+        private readonly ILogger<UserController> _logger;
+        
        
 
-        public UserController(IUserService userService, IMapper mapper,  IConfiguration configuration)
+        public UserController(IUserService userService, IMapper mapper,  IConfiguration configuration,ILogger<UserController> logger)
+            
         {
             this.userService = userService;
             _mapper = mapper;
             this.configuration = configuration;
-            
+            this._logger = logger;
+
 
             
         }
@@ -46,6 +49,8 @@ namespace OnlineExam1.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
+
                 
                 return StatusCode(500, ex.Message);
             }
@@ -64,7 +69,7 @@ namespace OnlineExam1.Controllers
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex.Message);
                 return StatusCode(500, ex.InnerException.Message);
 
             }
@@ -84,7 +89,7 @@ namespace OnlineExam1.Controllers
             }
             catch (Exception ex)
             {
-                
+                _logger.LogError(ex.Message);
                 return StatusCode(500, ex.InnerException.Message);
             }
         }
@@ -106,7 +111,7 @@ namespace OnlineExam1.Controllers
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex.Message);
                 return StatusCode(500, ex.InnerException.Message);
             }
         }
